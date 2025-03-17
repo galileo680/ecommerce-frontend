@@ -35,7 +35,7 @@ export class AuthService {
         tap((response) => {
           if (response && response.token) {
             localStorage.setItem('token', response.token);
-            //fetch user info
+            //TODO: Fetch user profile
           }
         })
       );
