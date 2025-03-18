@@ -1,1 +1,37 @@
-<p>cart-item works!</p>
+<div class="cart-item">
+  <div class="item-image">
+    <img
+      [src]="'https://via.placeholder.com/100x100'"
+      alt="{{ item.productName }}"
+    />
+  </div>
+
+  <div class="item-details">
+    <h3 class="item-name">{{ item.productName }}</h3>
+    <p class="item-price">${{ item.unitPrice?.toFixed(2) }}</p>
+  </div>
+
+  <div class="item-quantity">
+    <button
+      mat-icon-button
+      (click)="adjustQuantity(-1)"
+      [disabled]="item.quantity <= 1"
+    >
+      <mat-icon>remove</mat-icon>
+    </button>
+    <span class="quantity">{{ item.quantity }}</span>
+    <button mat-icon-button (click)="adjustQuantity(1)">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <div class="item-total">
+    <span>${{ (item.unitPrice! * item.quantity).toFixed(2) }}</span>
+  </div>
+
+  <div class="item-actions">
+    <button mat-icon-button color="warn" (click)="onRemove()">
+      <mat-icon>delete</mat-icon>
+    </button>
+  </div>
+</div>
