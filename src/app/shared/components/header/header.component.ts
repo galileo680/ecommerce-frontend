@@ -29,7 +29,7 @@ import { Cart } from '../../../core/models/cart.model';
     MatToolbarModule,
     MatMenuModule,
     MatBadgeModule,
-    MatFormFieldModule,
+    //MatFormFieldModule,
     MatInputModule,
   ],
   templateUrl: './header.component.html',
