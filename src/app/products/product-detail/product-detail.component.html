@@ -1,1 +1,78 @@
-<p>product-detail works!</p>
+<div class="product-detail-container">
+  <div *ngIf="loading">
+    <app-loading-spinner
+      message="Loading product details..."
+    ></app-loading-spinner>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+    <div class="error-actions">
+      <button mat-raised-button color="primary" routerLink="/products">
+        Back to Products
+      </button>
+    </div>
+  </div>
+
+  <div *ngIf="!loading && !errorMessage && product" class="product-detail">
+    <div class="product-image">
+      <img [src]="product.imageUrl" alt="{{ product.name }}" />
+    </div>
+
+    <div class="product-info">
+      <div class="back-link">
+        <a routerLink="/products" mat-button>
+          <mat-icon>arrow_back</mat-icon> Back to Products
+        </a>
+      </div>
+
+      <h1 class="product-name">{{ product.name }}</h1>
+
+      <div class="product-price">${{ product.price.toFixed(2) }}</div>
+
+      <div class="product-description">
+        <h3>Description</h3>
+        <p>{{ product.description }}</p>
+      </div>
+
+      <div class="product-stock" [class.out-of-stock]="product.quantity <= 0">
+        {{ product.quantity > 0 ? "In Stock" : "Out of Stock" }}
+        <span
+          *ngIf="product.quantity > 0 && product.quantity < 10"
+          class="low-stock"
+        >
+          (Only {{ product.quantity }} left)
+        </span>
+      </div>
+
+      <div class="product-actions" *ngIf="product.quantity > 0">
+        <div class="quantity-selector">
+          <button
+            mat-icon-button
+            (click)="decrementQuantity()"
+            [disabled]="quantity <= 1"
+          >
+            <mat-icon>remove</mat-icon>
+          </button>
+          <span class="quantity-value">{{ quantity }}</span>
+          <button
+            mat-icon-button
+            (click)="incrementQuantity()"
+            [disabled]="quantity >= product.quantity"
+          >
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+
+        <button
+          mat-raised-button
+          color="primary"
+          (click)="addToCart()"
+          [disabled]="product.quantity <= 0"
+        >
+          <mat-icon>add_shopping_cart</mat-icon> Add to Cart
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

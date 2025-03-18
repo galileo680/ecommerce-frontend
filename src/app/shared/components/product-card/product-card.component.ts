@@ -5,6 +5,7 @@ import { AuthService } from '../../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatIcon } from '@angular/material/icon';
+import { MatButton } from '@angular/material/button';
 import {
   MatCard,
   MatCardActions,
@@ -15,7 +16,14 @@ import { RouterLink } from '@angular/router';
 @Component({
   selector: 'app-product-card',
   standalone: true,
-  imports: [MatIcon, MatCard, MatCardActions, MatCardContent, RouterLink],
+  imports: [
+    MatIcon,
+    MatCard,
+    MatCardActions,
+    MatCardContent,
+    RouterLink,
+    MatButton,
+  ],
   templateUrl: './product-card.component.html',
   styleUrls: ['./product-card.component.scss'],
 })
