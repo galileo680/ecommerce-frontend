@@ -16,11 +16,15 @@ export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
   private currentUserSubject = new BehaviorSubject<User | null>(null);
   public currentUser$ = this.currentUserSubject.asObservable();
+  private isLoggedInSubject = new BehaviorSubject<boolean>(false);
+  public isLoggedIn$ = this.isLoggedInSubject.asObservable();
 
   constructor(private http: HttpClient) {
+    const token = localStorage.getItem('token');
     const storedUser = localStorage.getItem('currentUser');
-    if (storedUser) {
+    if (token && storedUser) {
       this.currentUserSubject.next(JSON.parse(storedUser));
+      this.isLoggedInSubject.next(true);
     }
   }
 
@@ -35,7 +39,7 @@ export class AuthService {
         tap((response) => {
           if (response && response.token) {
             localStorage.setItem('token', response.token);
-            //TODO: Fetch user profile
+            this.isLoggedInSubject.next(true);
           }
         })
       );
@@ -51,15 +55,17 @@ export class AuthService {
     localStorage.removeItem('token');
     localStorage.removeItem('currentUser');
     this.currentUserSubject.next(null);
+    this.isLoggedInSubject.next(false);
   }
 
   isLoggedIn(): boolean {
-    return !!localStorage.getItem('token');
+    return this.isLoggedInSubject.value || !!localStorage.getItem('token');
   }
 
   setCurrentUser(user: User): void {
     localStorage.setItem('currentUser', JSON.stringify(user));
     this.currentUserSubject.next(user);
+    this.isLoggedInSubject.next(true);
   }
 
   getCurrentUser(): User | null {

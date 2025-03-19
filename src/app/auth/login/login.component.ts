@@ -84,11 +84,19 @@ export class LoginComponent implements OnInit {
         this.userService.getCurrentUser().subscribe({
           next: (user) => {
             this.authService.setCurrentUser(user);
-            this.cartService.loadCart();
+            this.loading = false;
             this.router.navigateByUrl(this.redirectUrl);
           },
           error: (error) => {
-            console.error('Error loading user info', error);
+            console.error('Error loading user data:', error);
+            this.loading = false;
+            this.snackBar.open(
+              'Logged in, but failed to load user data',
+              'Close',
+              {
+                duration: 3000,
+              }
+            );
             this.router.navigateByUrl(this.redirectUrl);
           },
         });

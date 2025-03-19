@@ -1,16 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatBadgeModule } from '@angular/material/badge';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
-import { Observable } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { AuthService } from '../../../core/services/auth.service';
 import { CartService } from '../../../core/services/cart.service';
 import { TokenService } from '../../../core/services/token.service';
@@ -22,25 +21,25 @@ import { Cart } from '../../../core/models/cart.model';
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule,
+    RouterLink,
     FormsModule,
     MatButtonModule,
     MatIconModule,
     MatToolbarModule,
     MatMenuModule,
     MatBadgeModule,
-    //MatFormFieldModule,
     MatInputModule,
   ],
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   isLoggedIn = false;
   isAdmin = false;
   currentUser$: Observable<User | null>;
   cart$: Observable<Cart | null>;
   searchQuery = '';
+  private subscriptions: Subscription[] = [];
 
   constructor(
     private authService: AuthService,
@@ -53,11 +52,37 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.isLoggedIn = this.authService.isLoggedIn();
-    this.isAdmin = this.tokenService.isAdmin();
+    this.updateAuthStatus();
 
+    this.subscriptions.push(
+      this.authService.isLoggedIn$.subscribe((isLoggedIn) => {
+        this.isLoggedIn = isLoggedIn;
+        this.updateAuthStatus();
+      })
+    );
+
+    this.subscriptions.push(
+      this.authService.currentUser$.subscribe((user) => {
+        if (user) {
+          this.isLoggedIn = true;
+          this.isAdmin = this.tokenService.isAdmin();
+          this.cartService.loadCart();
+        }
+      })
+    );
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.forEach((sub) => sub.unsubscribe());
+  }
+
+  private updateAuthStatus(): void {
+    this.isLoggedIn = this.authService.isLoggedIn();
     if (this.isLoggedIn) {
+      this.isAdmin = this.tokenService.isAdmin();
       this.cartService.loadCart();
+    } else {
+      this.isAdmin = false;
     }
   }
 
