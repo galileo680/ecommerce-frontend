@@ -1,0 +1,56 @@
+.order-summary-container {
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  padding: 20px;
+  margin-bottom: 24px;
+
+  h2 {
+    font-size: 1.2rem;
+    margin-bottom: 16px;
+    color: #333;
+  }
+}
+
+.order-items {
+  margin-bottom: 20px;
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid #eee;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  .item-name {
+    flex: 1;
+
+    .item-quantity {
+      color: #666;
+      margin-left: 4px;
+    }
+  }
+
+  .item-price {
+    font-weight: 500;
+  }
+}
+
+.order-totals {
+  .total-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    &.final-total {
+      font-weight: 500;
+      padding-top: 8px;
+      margin-top: 8px;
+      border-top: 1px solid #ddd;
+      font-size: 1.1rem;
+    }
+  }
+}

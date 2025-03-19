@@ -1,1 +1,34 @@
-<p>order-summary works!</p>
+<div class="order-summary-container">
+  <h2>Order Summary</h2>
+
+  <div *ngIf="cart">
+    <div class="order-items">
+      <div *ngFor="let item of cart.cartItems" class="order-item">
+        <div class="item-name">
+          {{ item.productName }}
+          <span class="item-quantity">x{{ item.quantity }}</span>
+        </div>
+        <div class="item-price">
+          ${{ (item.unitPrice! * item.quantity).toFixed(2) }}
+        </div>
+      </div>
+    </div>
+
+    <div class="order-totals">
+      <div class="total-row">
+        <span>Subtotal:</span>
+        <span>${{ cart.totalAmount.toFixed(2) }}</span>
+      </div>
+
+      <div class="total-row">
+        <span>Shipping:</span>
+        <span>$0.00</span>
+      </div>
+
+      <div class="total-row final-total">
+        <span>Total:</span>
+        <span>${{ cart.totalAmount.toFixed(2) }}</span>
+      </div>
+    </div>
+  </div>
+</div>
