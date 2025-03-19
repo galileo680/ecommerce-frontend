@@ -55,12 +55,10 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.initForm();
 
-    // Get redirect URL from route parameters or default to '/'
     this.route.queryParams.subscribe((params) => {
       this.redirectUrl = params['redirectUrl'] || '/';
     });
 
-    // Redirect already logged in users
     if (this.authService.isLoggedIn()) {
       this.router.navigate([this.redirectUrl]);
     }
@@ -83,13 +81,10 @@ export class LoginComponent implements OnInit {
 
     this.authService.login(loginRequest).subscribe({
       next: (response) => {
-        // Load user info after successful login
         this.userService.getCurrentUser().subscribe({
           next: (user) => {
             this.authService.setCurrentUser(user);
-            // Load cart
             this.cartService.loadCart();
-            // Navigate to redirect URL
             this.router.navigateByUrl(this.redirectUrl);
           },
           error: (error) => {
