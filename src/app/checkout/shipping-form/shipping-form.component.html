@@ -1,1 +1,74 @@
-<p>shipping-form works!</p>
+<div class="shipping-form-container">
+  <h2>Shipping Information</h2>
+
+  <form [formGroup]="shippingForm">
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Street Address</mat-label>
+      <input
+        matInput
+        formControlName="street"
+        placeholder="Enter street address"
+        required
+      />
+      <mat-error *ngIf="shippingForm.get('street')?.hasError('required')">
+        Street address is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>City</mat-label>
+        <input
+          matInput
+          formControlName="city"
+          placeholder="Enter city"
+          required
+        />
+        <mat-error *ngIf="shippingForm.get('city')?.hasError('required')">
+          City is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>State/Province</mat-label>
+        <input
+          matInput
+          formControlName="state"
+          placeholder="Enter state/province"
+          required
+        />
+        <mat-error *ngIf="shippingForm.get('state')?.hasError('required')">
+          State is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="form-row">
+      <mat-form-field appearance="outline">
+        <mat-label>Postal Code</mat-label>
+        <input
+          matInput
+          formControlName="postalCode"
+          placeholder="Enter postal code"
+          required
+        />
+        <mat-error *ngIf="shippingForm.get('postalCode')?.hasError('required')">
+          Postal code is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Country</mat-label>
+        <input
+          matInput
+          formControlName="country"
+          placeholder="Enter country"
+          required
+        />
+        <mat-error *ngIf="shippingForm.get('country')?.hasError('required')">
+          Country is required
+        </mat-error>
+      </mat-form-field>
+    </div>
+  </form>
+</div>
