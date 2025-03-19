@@ -35,6 +35,44 @@
         >
       </a>
 
+      <ng-container *ngIf="isLoggedIn">
+        <button mat-button [matMenuTriggerFor]="userMenu">
+          <mat-icon>account_circle</mat-icon>
+          {{ (currentUser$ | async)?.firstname || "Account" }}
+        </button>
+        <mat-menu #userMenu="matMenu">
+          <a mat-menu-item routerLink="/orders">
+            <mat-icon>list_alt</mat-icon>
+            My Orders
+          </a>
+          <button mat-menu-item (click)="logout()">
+            <mat-icon>exit_to_app</mat-icon>
+            Logout
+          </button>
+        </mat-menu>
+      </ng-container>
+
+      <ng-container *ngIf="isAdmin">
+        <button mat-button [matMenuTriggerFor]="adminMenu">
+          <mat-icon>admin_panel_settings</mat-icon>
+          Admin
+        </button>
+        <mat-menu #adminMenu="matMenu">
+          <a mat-menu-item routerLink="/admin/dashboard">
+            <mat-icon>dashboard</mat-icon>
+            Dashboard
+          </a>
+          <a mat-menu-item routerLink="/admin/product-management">
+            <mat-icon>inventory_2</mat-icon>
+            Products
+          </a>
+          <a mat-menu-item routerLink="/admin/category-management">
+            <mat-icon>category</mat-icon>
+            Categories
+          </a>
+        </mat-menu>
+      </ng-container>
+
       <ng-container *ngIf="!isLoggedIn">
         <a mat-button routerLink="/auth/login">Login</a>
         <a mat-raised-button color="accent" routerLink="/auth/register"

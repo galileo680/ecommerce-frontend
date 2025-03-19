@@ -1,0 +1,52 @@
+.activate-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  padding: 16px;
+}
+
+.activate-card {
+  width: 100%;
+  max-width: 500px;
+}
+
+.activate-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 24px;
+
+  mat-icon {
+    font-size: 48px;
+    height: 48px;
+    width: 48px;
+    margin-bottom: 16px;
+  }
+
+  h2 {
+    margin-bottom: 16px;
+  }
+
+  p {
+    margin-bottom: 8px;
+    color: rgba(0, 0, 0, 0.7);
+  }
+
+  button {
+    margin-top: 24px;
+  }
+
+  &.success {
+    mat-icon {
+      color: #4caf50;
+    }
+  }
+
+  &.error {
+    mat-icon {
+      color: #f44336;
+    }
+  }
+}
