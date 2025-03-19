@@ -1,1 +1,51 @@
-<p>checkout-page works!</p>
+<div class="checkout-container">
+  <h1 class="page-title">Checkout</h1>
+
+  <div *ngIf="loading">
+    <app-loading-spinner message="Loading checkout..."></app-loading-spinner>
+  </div>
+
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!loading && !errorMessage && cart" class="checkout-content">
+    <div class="checkout-form">
+      <div class="mobile-order-summary">
+        <app-order-summary [cart]="cart"></app-order-summary>
+      </div>
+
+      <app-shipping-form
+        (shippingAddressValid)="onShippingAddressValidChange($event)"
+        (shippingAddressChange)="onShippingAddressChange($event)"
+      >
+      </app-shipping-form>
+
+      <app-payment-form
+        (paymentDetailsValid)="onPaymentDetailsValidChange($event)"
+        (paymentDetailsChange)="onPaymentDetailsChange($event)"
+      >
+      </app-payment-form>
+
+      <div class="checkout-actions">
+        <button mat-stroked-button routerLink="/cart">
+          <mat-icon>arrow_back</mat-icon> Back to Cart
+        </button>
+
+        <button
+          mat-raised-button
+          color="primary"
+          [disabled]="!canSubmitOrder()"
+          (click)="onSubmitOrder()"
+        >
+          <mat-icon>check_circle</mat-icon>
+          {{ submitting ? "Processing..." : "Place Order" }}
+        </button>
+      </div>
+    </div>
+
+    <div class="checkout-summary">
+      <app-order-summary [cart]="cart"></app-order-summary>
+    </div>
+  </div>
+</div>
