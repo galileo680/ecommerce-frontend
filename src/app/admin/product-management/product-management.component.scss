@@ -1,0 +1,45 @@
+.admin-container {
+  padding: 16px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+
+  .page-title {
+    margin-bottom: 0;
+  }
+}
+
+.error-message {
+  text-align: center;
+  color: #f44336;
+  margin: 24px 0;
+}
+
+.products-table-container {
+  background-color: #fff;
+  border-radius: 8px;
+  padding: 24px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.filter-field {
+  width: 100%;
+  margin-bottom: 16px;
+}
+
+.table-container {
+  overflow-x: auto;
+
+  table {
+    width: 100%;
+  }
+
+  th.mat-header-cell,
+  td.mat-cell {
+    padding: 0 16px;
+  }
+}
