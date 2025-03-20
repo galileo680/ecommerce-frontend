@@ -1,1 +1,65 @@
-<p>dashboard works!</p>
+<div class="admin-container">
+  <h1 class="page-title">Admin Dashboard</h1>
+
+  <div *ngIf="loading">
+    <app-loading-spinner
+      message="Loading dashboard data..."
+    ></app-loading-spinner>
+  </div>
+
+  <div *ngIf="!loading" class="dashboard-stats">
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-icon">
+          <mat-icon>inventory_2</mat-icon>
+        </div>
+        <div class="stat-info">
+          <p class="stat-value">{{ productCount }}</p>
+          <p class="stat-label">Products</p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-button
+          color="primary"
+          routerLink="/admin/product-management"
+        >
+          Manage Products
+        </button>
+      </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="stat-card">
+      <mat-card-content>
+        <div class="stat-icon">
+          <mat-icon>category</mat-icon>
+        </div>
+        <div class="stat-info">
+          <p class="stat-value">{{ categoryCount }}</p>
+          <p class="stat-label">Categories</p>
+        </div>
+      </mat-card-content>
+      <mat-card-actions>
+        <button
+          mat-button
+          color="primary"
+          routerLink="/admin/category-management"
+        >
+          Manage Categories
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+
+  <div class="admin-actions">
+    <h2>Quick Actions</h2>
+    <div class="action-buttons">
+      <button mat-raised-button color="primary" routerLink="/admin/add-product">
+        <mat-icon>add</mat-icon> Add New Product
+      </button>
+      <button mat-raised-button color="accent" routerLink="/admin/add-category">
+        <mat-icon>add</mat-icon> Add New Category
+      </button>
+    </div>
+  </div>
+</div>
