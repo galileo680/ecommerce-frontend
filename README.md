@@ -25,13 +25,11 @@ ShopVerse is a modern e-commerce frontend application built with Angular 18. Thi
 
 ## Technologies Used
 
-- **Angular 18**: Latest version of the Angular framework
-- **Angular Material**: UI component library
-- **TypeScript**: For type-safe code
-- **RxJS**: For reactive programming
-- **Angular Standalone Components**: For modular architecture
-- **JWT Authentication**: Secure user authentication
-- **REST API Integration**: For backend communication
+- **Angular 18**
+- **Angular Material UI**
+- **RxJS**
+- **JWT Authentication**
+- **REST API Integration**
 
 ## Preview
 
@@ -39,80 +37,114 @@ Below are previews of key screens from the application:
 
 ### Home Page
 
-The main landing page showing featured products and categories.
+The main landing page.
 ![Home Page](./src/assets/screenshots/home1.jpg)
-
-### Why Choose Us Section
-
-Highlighting the main benefits of shopping with ShopVerse.
-![Why Choose Us](./image1.jpg)
-
-### Login Page
-
-User authentication screen.
-![Login Page](./image2.jpg)
-
-### Registration Page
-
-User registration form.
-![Registration Page](./image3.jpg)
-
-### Products Page
-
-Browse all products with category filtering.
-![Products Page](./image4.jpg)
-
-### Product Detail Page
-
-Detailed view of a specific product.
-![Product Detail](./image5.jpg)
-
-### Search Results
-
-Results page after searching for products.
-![Search Results](./image6.jpg)
-
-### Shopping Cart
-
-View and manage items in the cart.
-![Shopping Cart](./image7.jpg)
-
-### Checkout Page
-
-Complete the purchase with shipping and payment details.
-![Checkout](./image8.jpg)
-
-### Admin Dashboard
-
-Overview of store management for administrators.
-![Admin Dashboard](./image9.jpg)
-
-### Product Management
-
-Admin interface for managing products.
-![Product Management](./image10.jpg)
-
-### Add Product Form
-
-Form for adding new products to the store.
-![Add Product](./image11.jpg)
-
-### Category Management
-
-Admin interface for managing product categories.
-![Category Management](./image12.jpg)
 
 ### Shop by Category
 
 Visually browse different product categories.
-![Shop by Category](./image14.jpg)
+![Shop by Category](./src/assets/screenshots/home2.jpg)
 
 ### Featured Products
 
 Showcase of highlighted products.
-![Featured Products](./image15.jpg)
+![Featured Products](./src/assets/screenshots/home3.jpg)
 
 ### Special Offers
 
 Promotional section for discounted items.
-![Special Offers](./image16.jpg)
+![Special Offers](./src/assets/screenshots/home4.jpg)
+
+### Why Choose Us Section
+
+Highlighting the main benefits of shopping with ShopVerse.
+![Why Choose Us](./src/assets/screenshots/home5.jpg)
+
+### Login Page
+
+User authentication screen.
+![Login Page](./src/assets/screenshots/login1.jpg)
+
+### Registration Page
+
+User registration form.
+![Registration Page](./src/assets/screenshots/register1.jpg)
+
+### Products Page
+
+Browse all products with category filtering.
+![Products Page](./src/assets/screenshots/products1.jpg)
+
+### Product Detail Page
+
+Detailed view of a specific product.
+![Product Detail](./src/assets/screenshots/products-detail1.jpg)
+
+### Search Results
+
+Results page after searching for products.
+![Search Results](./src/assets/screenshots/search1.jpg)
+
+### Shopping Cart
+
+View and manage items in the cart.
+![Shopping Cart](./src/assets/screenshots/cart1.jpg)
+
+### Checkout Page
+
+Complete the purchase with shipping and payment details.
+![Checkout](./src/assets/screenshots/checkout1.jpg)
+
+### Admin Dashboard
+
+Overview of store management for administrators.
+![Admin Dashboard](./src/assets/screenshots/admindashboard1.jpg)
+
+### Product Management
+
+Admin interface for managing products.
+![Product Management](./src/assets/screenshots/manageproducts1.jpg)
+
+### Add Product Form
+
+Form for adding new products to the store.
+![Add Product](./src/assets/screenshots/addproduct1.jpg)
+
+### Category Management
+
+Admin interface for managing product categories.
+![Category Management](./src/assets/screenshots/categorymanagement1.jpg)
+
+## Setup and Installation
+
+1. **Clone the repository**
+
+   ```
+   git clone https://github.com/galileo680/ecommerce-frontend.git
+   cd ecommerce-frontend
+   ```
+
+2. **Install dependencies**
+
+   ```
+   npm install
+   ```
+
+3. **Configure environment**
+
+   - Update `src/environments/environment.ts` with your API URL
+
+4. **Run the development server**
+
+   ```
+   ng serve
+   ```
+
+5. **Build for production**
+   ```
+   ng build --prod
+   ```
+
+## Author
+
+Bartłomiej Głuchowicz
