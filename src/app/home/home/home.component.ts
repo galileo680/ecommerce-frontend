@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
     'sports_soccer',
     'apparel',
     'steps',
+    'pedal_bike',
   ];
 
   constructor(
