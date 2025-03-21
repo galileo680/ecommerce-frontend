@@ -27,7 +27,7 @@ export class OrderListComponent implements OnInit {
   orders: Order[] = [];
   loading = true;
   errorMessage = '';
-  Math = Math; // For using Math functions in template
+  Math = Math;
 
   constructor(private orderService: OrderService) {}
 
