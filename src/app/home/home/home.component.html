@@ -1,84 +1,106 @@
 <div class="home-container">
-  <section class="hero">
-    <div class="hero-content">
-      <h1>Welcome to Our Ecommerce Store</h1>
-      <p>Discover amazing products at great prices</p>
-      <button mat-raised-button color="primary" routerLink="/products">
+  <section class="hero-section">
+    <div class="hero-carousel">
+      <div class="carousel-slide active">
+        <div class="hero-content">
+          <h1>Welcome to ShopVerse</h1>
+          <p>Discover amazing products at great prices</p>
+          <button mat-raised-button color="primary" routerLink="/products">
+            Shop Now
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="categories-section">
+    <div class="section-container">
+      <h2 class="section-title">Shop by Category</h2>
+      <div class="categories-showcase">
+        <div
+          *ngFor="let category of categories; let i = index"
+          class="category-item"
+          [ngClass]="'category-' + ((i % 5) + 1)"
+          routerLink="/products/category/{{ category.id }}"
+        >
+          <div class="category-overlay"></div>
+          <div class="category-content">
+            <mat-icon>{{ getCategoryIcon(i) }}</mat-icon>
+            <h3>{{ category.name }}</h3>
+            <span class="category-cta">Explore</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="featured-products-section">
+    <div class="section-container">
+      <h2 class="section-title">Featured Products</h2>
+
+      <div *ngIf="loading">
+        <app-loading-spinner
+          message="Loading featured products..."
+        ></app-loading-spinner>
+      </div>
+
+      <div *ngIf="errorMessage" class="error-message">
+        {{ errorMessage }}
+      </div>
+
+      <div *ngIf="!loading && !errorMessage" class="products-grid">
+        <app-product-card
+          *ngFor="let product of featuredProducts"
+          [product]="product"
+        ></app-product-card>
+      </div>
+
+      <div class="view-more-btn">
+        <button mat-raised-button color="primary" routerLink="/products">
+          View All Products
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <section class="promo-banner">
+    <div class="promo-content">
+      <h2>Special Offers</h2>
+      <p>Get up to 50% off on selected items</p>
+      <button mat-raised-button color="accent" routerLink="/products">
         Shop Now
       </button>
     </div>
   </section>
 
-  <section class="categories-section">
-    <h2 class="section-title">Shop by Category</h2>
-
-    <div class="categories-grid">
-      <mat-card
-        *ngFor="let category of categories"
-        class="category-card"
-        routerLink="/products/category/{{ category.id }}"
-      >
-        <div class="category-icon">
-          <mat-icon>category</mat-icon>
-        </div>
-        <mat-card-content>
-          <h3>{{ category.name }}</h3>
-        </mat-card-content>
-      </mat-card>
-    </div>
-  </section>
-
-  <section class="featured-products">
-    <h2 class="section-title">Featured Products</h2>
-
-    <div *ngIf="loading">
-      <app-loading-spinner
-        message="Loading featured products..."
-      ></app-loading-spinner>
-    </div>
-
-    <div *ngIf="errorMessage" class="error-message">
-      {{ errorMessage }}
-    </div>
-
-    <div *ngIf="!loading && !errorMessage" class="products-grid">
-      <app-product-card
-        *ngFor="let product of featuredProducts"
-        [product]="product"
-      >
-      </app-product-card>
-    </div>
-
-    <div class="view-more-btn">
-      <button mat-raised-button color="primary" routerLink="/products">
-        View All Products
-      </button>
-    </div>
-  </section>
-
   <section class="features-section">
-    <div class="feature">
-      <mat-icon>local_shipping</mat-icon>
-      <h3>Free Shipping</h3>
-      <p>On orders over $50</p>
-    </div>
+    <div class="section-container">
+      <h2 class="section-title">Why Choose Us</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <mat-icon>local_shipping</mat-icon>
+          <h3>Free Shipping</h3>
+          <p>On orders over $50</p>
+        </div>
 
-    <div class="feature">
-      <mat-icon>security</mat-icon>
-      <h3>Secure Payments</h3>
-      <p>100% secure checkout</p>
-    </div>
+        <div class="feature-card">
+          <mat-icon>security</mat-icon>
+          <h3>Secure Payments</h3>
+          <p>100% secure checkout</p>
+        </div>
 
-    <div class="feature">
-      <mat-icon>replay</mat-icon>
-      <h3>Easy Returns</h3>
-      <p>30 day money back guarantee</p>
-    </div>
+        <div class="feature-card">
+          <mat-icon>replay</mat-icon>
+          <h3>Easy Returns</h3>
+          <p>30 day money back guarantee</p>
+        </div>
 
-    <div class="feature">
-      <mat-icon>support_agent</mat-icon>
-      <h3>24/7 Support</h3>
-      <p>We're always here to help</p>
+        <div class="feature-card">
+          <mat-icon>support_agent</mat-icon>
+          <h3>24/7 Support</h3>
+          <p>We're always here to help</p>
+        </div>
+      </div>
     </div>
   </section>
 </div>

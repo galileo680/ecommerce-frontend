@@ -33,12 +33,31 @@ export class HomeComponent implements OnInit {
   loading = true;
   errorMessage = '';
 
+  categoryIcons: string[] = [
+    'category',
+    'shopping_bag',
+    'inventory_2',
+    'checkroom',
+    'devices',
+    'sports_esports',
+    'home',
+    'kitchen',
+    'sports_soccer',
+    'apparel',
+    'steps',
+  ];
+
   constructor(
     private productService: ProductService,
     private categoryService: CategoryService
   ) {}
 
   ngOnInit(): void {
+    this.loadFeaturedProducts();
+    this.loadCategories();
+  }
+
+  loadFeaturedProducts(): void {
     this.productService.getAllProducts().subscribe({
       next: (products) => {
         this.featuredProducts = products.slice(0, 4);
@@ -50,7 +69,9 @@ export class HomeComponent implements OnInit {
         this.loading = false;
       },
     });
+  }
 
+  loadCategories(): void {
     this.categoryService.getAllCategories().subscribe({
       next: (categories) => {
         this.categories = categories;
@@ -59,5 +80,10 @@ export class HomeComponent implements OnInit {
         console.error('Error loading categories', error);
       },
     });
+  }
+
+  //ToDo: change icon selection mechanism
+  getCategoryIcon(index: number): string {
+    return this.categoryIcons[index % this.categoryIcons.length];
   }
 }

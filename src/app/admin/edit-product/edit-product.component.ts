@@ -163,12 +163,10 @@ export class EditProductComponent implements OnInit {
     this.submitting = true;
     const formData = new FormData();
 
-    // Add form values to FormData
     Object.keys(this.productForm.value).forEach((key) => {
       formData.append(key, this.productForm.value[key]);
     });
 
-    // Add image file if a new one was selected
     if (this.imageFile) {
       formData.append('imageFile', this.imageFile);
     }
