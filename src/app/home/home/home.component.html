@@ -1,33 +1,43 @@
 <div class="home-container">
   <section class="hero-section">
-    <div class="hero-carousel">
-      <div class="carousel-slide active">
-        <div class="hero-content">
-          <h1>Welcome to ShopVerse</h1>
-          <p>Discover amazing products at great prices</p>
-          <button mat-raised-button color="primary" routerLink="/products">
+    <div class="hero-content">
+      <div class="hero-text" data-aos="fade-right">
+        <h1 class="hero-title">Discover <span class="highlight">Quality</span> Products</h1>
+        <p class="hero-subtitle">Elevate your shopping experience with curated collections</p>
+        <div class="hero-buttons">
+          <button mat-raised-button color="primary" class="primary-btn" routerLink="/products">
             Shop Now
           </button>
+          <button mat-stroked-button class="secondary-btn" routerLink="/categories">
+            Explore Categories
+          </button>
         </div>
+      </div>
+      <div class="hero-image" data-aos="fade-left">
+        <div class="shape-1"></div>
+        <div class="shape-2"></div>
+        <div class="shape-3"></div>
       </div>
     </div>
   </section>
 
   <section class="categories-section">
     <div class="section-container">
-      <h2 class="section-title">Shop by Category</h2>
-      <div class="categories-showcase">
-        <div
-          *ngFor="let category of categories; let i = index"
-          class="category-item"
-          [ngClass]="'category-' + ((i % 5) + 1)"
-          routerLink="/products/category/{{ category.id }}"
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Shop by Category</h2>
+        <p class="section-subtitle">Explore our wide range of carefully curated collections</p>
+      </div>
+      <div class="categories-grid" data-aos="fade-up" data-aos-delay="100">
+        <div 
+          *ngFor="let category of categories; let i = index" 
+          class="category-card"
+          [routerLink]="['/products/category', category.id]"
+          data-aos="fade-up"
+          [attr.data-aos-delay]="100 + (i * 50)"
         >
-          <div class="category-overlay"></div>
           <div class="category-content">
-            <mat-icon>{{ getCategoryIcon(i) }}</mat-icon>
             <h3>{{ category.name }}</h3>
-            <span class="category-cta">Explore</span>
+            <span class="category-link">Explore</span>
           </div>
         </div>
       </div>
@@ -36,69 +46,103 @@
 
   <section class="featured-products-section">
     <div class="section-container">
-      <h2 class="section-title">Featured Products</h2>
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Featured Products</h2>
+        <p class="section-subtitle">Handpicked selections just for you</p>
+      </div>
 
-      <div *ngIf="loading">
-        <app-loading-spinner
-          message="Loading featured products..."
-        ></app-loading-spinner>
+      <div *ngIf="loading" class="loading-container">
+        <app-loading-spinner message="Loading featured products..."></app-loading-spinner>
       </div>
 
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
 
-      <div *ngIf="!loading && !errorMessage" class="products-grid">
-        <app-product-card
-          *ngFor="let product of featuredProducts"
-          [product]="product"
-        ></app-product-card>
+      <div *ngIf="!loading && !errorMessage" class="products-grid" data-aos="fade-up">
+        <div *ngFor="let product of featuredProducts; let i = index" 
+          data-aos="fade-up" 
+          [attr.data-aos-delay]="i * 100"
+          class="product-card-wrapper">
+          <app-product-card [product]="product"></app-product-card>
+        </div>
       </div>
 
-      <div class="view-more-btn">
+      <div class="view-more-btn" data-aos="fade-up">
         <button mat-raised-button color="primary" routerLink="/products">
           View All Products
+          <mat-icon>arrow_forward</mat-icon>
         </button>
       </div>
     </div>
   </section>
 
-  <section class="promo-banner">
+  <section class="promo-banner" data-aos="fade-up">
     <div class="promo-content">
-      <h2>Special Offers</h2>
-      <p>Get up to 50% off on selected items</p>
-      <button mat-raised-button color="accent" routerLink="/products">
-        Shop Now
-      </button>
+      <div class="promo-text" data-aos="fade-right">
+        <span class="promo-label">Limited Time Offer</span>
+        <h2>Season Sale</h2>
+        <p>Enjoy exclusive discounts on our latest collections</p>
+        <div class="promo-countdown">
+          <div class="countdown-item">
+            <span class="countdown-value">30</span>
+            <span class="countdown-label">Days</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value">24</span>
+            <span class="countdown-label">Hours</span>
+          </div>
+          <div class="countdown-item">
+            <span class="countdown-value">60</span>
+            <span class="countdown-label">Minutes</span>
+          </div>
+        </div>
+        <button mat-raised-button color="accent" routerLink="/products" class="shop-now-btn">
+          Shop Now
+          <mat-icon>arrow_forward</mat-icon>
+        </button>
+      </div>
+      <div class="promo-image" data-aos="fade-left"></div>
     </div>
   </section>
 
   <section class="features-section">
     <div class="section-container">
-      <h2 class="section-title">Why Choose Us</h2>
+      <div class="section-header" data-aos="fade-up">
+        <h2 class="section-title">Why Shop With Us</h2>
+        <p class="section-subtitle">We're committed to providing the best shopping experience</p>
+      </div>
       <div class="features-grid">
-        <div class="feature-card">
-          <mat-icon>local_shipping</mat-icon>
-          <h3>Free Shipping</h3>
-          <p>On orders over $50</p>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
+          <div class="feature-icon">
+            <mat-icon>local_shipping</mat-icon>
+          </div>
+          <h3>Fast Delivery</h3>
+          <p>Free shipping on orders over $50</p>
         </div>
 
-        <div class="feature-card">
-          <mat-icon>security</mat-icon>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
+          <div class="feature-icon">
+            <mat-icon>verified_user</mat-icon>
+          </div>
           <h3>Secure Payments</h3>
-          <p>100% secure checkout</p>
+          <p>100% secure payment methods</p>
         </div>
 
-        <div class="feature-card">
-          <mat-icon>replay</mat-icon>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
+          <div class="feature-icon">
+            <mat-icon>autorenew</mat-icon>
+          </div>
           <h3>Easy Returns</h3>
-          <p>30 day money back guarantee</p>
+          <p>30-day money-back guarantee</p>
         </div>
 
-        <div class="feature-card">
-          <mat-icon>support_agent</mat-icon>
+        <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
+          <div class="feature-icon">
+            <mat-icon>headset_mic</mat-icon>
+          </div>
           <h3>24/7 Support</h3>
-          <p>We're always here to help</p>
+          <p>Dedicated customer service</p>
         </div>
       </div>
     </div>

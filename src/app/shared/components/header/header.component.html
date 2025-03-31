@@ -1,14 +1,17 @@
-<mat-toolbar color="primary" class="mat-elevation-z6">
-  <div class="container">
-    <div class="logo">
-      <a routerLink="/">
-        <span>ShopVerse</span>
-      </a>
+<header class="header">
+  <div class="header-container">
+    <div class="header-left">
+      <div class="logo">
+        <a routerLink="/">
+          <span class="logo-text">Shop<span class="highlight">Verse</span></span>
+        </a>
+      </div>
     </div>
 
-    <div class="search-form">
-      <form (ngSubmit)="onSearch()">
+    <div class="header-center">
+      <form class="search-form" (ngSubmit)="onSearch()">
         <div class="search-input-container">
+          <mat-icon class="search-icon">search</mat-icon>
           <input
             type="text"
             placeholder="Search products..."
@@ -17,68 +20,93 @@
             class="search-input"
           />
           <button mat-icon-button type="submit" class="search-button">
-            <mat-icon>search</mat-icon>
+            <mat-icon>arrow_forward</mat-icon>
           </button>
         </div>
       </form>
     </div>
 
-    <div class="nav-links">
-      <a mat-button routerLink="/">Home</a>
-      <a mat-button routerLink="/products">Products</a>
+    <div class="header-right">
+      <nav class="nav-links">
+        <a mat-button routerLink="/" class="nav-link">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </a>
+        <a mat-button routerLink="/products" class="nav-link">
+          <mat-icon>shopping_bag</mat-icon>
+          <span>Products</span>
+        </a>
 
-      <a mat-icon-button routerLink="/cart" *ngIf="isLoggedIn">
-        <mat-icon
-          [matBadge]="(cart$ | async)?.cartItems?.length || 0"
-          matBadgeColor="accent"
-          >shopping_cart</mat-icon
-        >
-      </a>
+        <a mat-icon-button routerLink="/cart" class="cart-button" *ngIf="isLoggedIn">
+          <mat-icon
+            [matBadge]="(cart$ | async)?.cartItems?.length || 0"
+            matBadgeColor="accent"
+            matBadgeSize="small"
+            >shopping_cart</mat-icon
+          >
+        </a>
 
-      <ng-container *ngIf="isLoggedIn">
-        <button mat-button [matMenuTriggerFor]="userMenu">
-          <mat-icon>account_circle</mat-icon>
-          {{ (currentUser$ | async)?.firstname || "Account" }}
-        </button>
-        <mat-menu #userMenu="matMenu">
-          <a mat-menu-item routerLink="/orders">
-            <mat-icon>list_alt</mat-icon>
-            My Orders
-          </a>
-          <button mat-menu-item (click)="logout()">
-            <mat-icon>exit_to_app</mat-icon>
-            Logout
+        <ng-container *ngIf="isLoggedIn">
+          <button mat-button [matMenuTriggerFor]="userMenu" class="user-menu-button">
+            <div class="user-info">
+              <mat-icon>account_circle</mat-icon>
+              <span>{{ (currentUser$ | async)?.firstname || "Account" }}</span>
+            </div>
           </button>
-        </mat-menu>
-      </ng-container>
+          <mat-menu #userMenu="matMenu" class="user-menu">
+            <div class="menu-header">
+              <mat-icon>account_circle</mat-icon>
+              <span>{{ (currentUser$ | async)?.firstname }}</span>
+            </div>
+            <a mat-menu-item routerLink="/orders" class="menu-item">
+              <mat-icon>list_alt</mat-icon>
+              <span>My Orders</span>
+            </a>
+            <button mat-menu-item (click)="logout()" class="menu-item">
+              <mat-icon>exit_to_app</mat-icon>
+              <span>Logout</span>
+            </button>
+          </mat-menu>
+        </ng-container>
 
-      <ng-container *ngIf="isAdmin">
-        <button mat-button [matMenuTriggerFor]="adminMenu">
-          <mat-icon>admin_panel_settings</mat-icon>
-          Admin
-        </button>
-        <mat-menu #adminMenu="matMenu">
-          <a mat-menu-item routerLink="/admin/dashboard">
-            <mat-icon>dashboard</mat-icon>
-            Dashboard
-          </a>
-          <a mat-menu-item routerLink="/admin/product-management">
-            <mat-icon>inventory_2</mat-icon>
-            Products
-          </a>
-          <a mat-menu-item routerLink="/admin/category-management">
-            <mat-icon>category</mat-icon>
-            Categories
-          </a>
-        </mat-menu>
-      </ng-container>
+        <ng-container *ngIf="isAdmin">
+          <button mat-button [matMenuTriggerFor]="adminMenu" class="admin-menu-button">
+            <div class="admin-info">
+              <mat-icon>admin_panel_settings</mat-icon>
+              <span>Admin</span>
+            </div>
+          </button>
+          <mat-menu #adminMenu="matMenu" class="admin-menu">
+            <div class="menu-header">
+              <mat-icon>admin_panel_settings</mat-icon>
+              <span>Admin Panel</span>
+            </div>
+            <a mat-menu-item routerLink="/admin/dashboard" class="menu-item">
+              <mat-icon>dashboard</mat-icon>
+              <span>Dashboard</span>
+            </a>
+            <a mat-menu-item routerLink="/admin/product-management" class="menu-item">
+              <mat-icon>inventory_2</mat-icon>
+              <span>Products</span>
+            </a>
+            <a mat-menu-item routerLink="/admin/category-management" class="menu-item">
+              <mat-icon>category</mat-icon>
+              <span>Categories</span>
+            </a>
+          </mat-menu>
+        </ng-container>
 
-      <ng-container *ngIf="!isLoggedIn">
-        <a mat-button routerLink="/auth/login">Login</a>
-        <a mat-raised-button color="accent" routerLink="/auth/register"
-          >Register</a
-        >
-      </ng-container>
+        <ng-container *ngIf="!isLoggedIn">
+          <a mat-button routerLink="/auth/login" class="auth-button login-button">
+            <mat-icon>login</mat-icon>
+            <span>Login</span>
+          </a>
+          <a mat-raised-button color="accent" routerLink="/auth/register" class="auth-button register-button">
+            <mat-icon>person_add</mat-icon>
+            <span>Register</span>
+          </a>
+        </ng-container>
+      </nav>
     </div>
   </div>
-</mat-toolbar>
+</header>

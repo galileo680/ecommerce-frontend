@@ -1,34 +1,131 @@
 <footer class="footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-section">
-        <h3>About project</h3>
-        <p>
-          This project is a frontend part for a E-commerce application. Built
-          with Angular 18.
+  <div class="footer-content">
+    <div class="footer-main">
+      <div class="footer-brand">
+        <h2 class="logo-text">Shop<span class="highlight">Verse</span></h2>
+        <p class="brand-description">
+          Your one-stop destination for all your shopping needs. Discover amazing products at great prices.
         </p>
-        <p>Author: Bartlomiej Gluchowicz</p>
+        <div class="social-links">
+          <a href="#" class="social-link" target="_blank">
+            <mat-icon>facebook</mat-icon>
+          </a>
+          <a href="#" class="social-link" target="_blank">
+            <mat-icon>twitter</mat-icon>
+          </a>
+          <a href="#" class="social-link" target="_blank">
+            <mat-icon>instagram</mat-icon>
+          </a>
+          <a href="#" class="social-link" target="_blank">
+            <mat-icon>linkedin</mat-icon>
+          </a>
+        </div>
       </div>
 
-      <div class="footer-section">
-        <h3>Quick Links</h3>
-        <ul>
-          <li><a routerLink="/">Home</a></li>
-          <li><a routerLink="/products">Products</a></li>
-          <li><a routerLink="/auth/login">My Account</a></li>
-          <li><a routerLink="/cart">Shopping Cart</a></li>
-        </ul>
+      <div class="footer-links">
+        <div class="footer-section">
+          <h3>Quick Links</h3>
+          <ul>
+            <li>
+              <a routerLink="/">
+                <mat-icon>home</mat-icon>
+                <span>Home</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/products">
+                <mat-icon>shopping_bag</mat-icon>
+                <span>Products</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/auth/login">
+                <mat-icon>account_circle</mat-icon>
+                <span>My Account</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/cart">
+                <mat-icon>shopping_cart</mat-icon>
+                <span>Shopping Cart</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Support</h3>
+          <ul>
+            <li>
+              <a routerLink="/faq">
+                <mat-icon>help_outline</mat-icon>
+                <span>FAQ</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/shipping">
+                <mat-icon>local_shipping</mat-icon>
+                <span>Shipping Info</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/returns">
+                <mat-icon>replay</mat-icon>
+                <span>Returns</span>
+              </a>
+            </li>
+            <li>
+              <a routerLink="/contact">
+                <mat-icon>contact_support</mat-icon>
+                <span>Contact Us</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="footer-section">
+          <h3>Contact Info</h3>
+          <ul class="contact-info">
+            <li>
+              <mat-icon>email</mat-icon>
+              <span>info&#64;shopverse.com</span>
+            </li>
+            <li>
+              <mat-icon>phone</mat-icon>
+              <span>+48 XXX YYY ZZZ</span>
+            </li>
+            <li>
+              <mat-icon>location_on</mat-icon>
+              <span>123 Shopping Street, City, Country</span>
+            </li>
+          </ul>
+        </div>
       </div>
 
-      <div class="footer-section">
-        <h3>Contact Us</h3>
-        <p>Email: info&#64;shopverse.com</p>
-        <p>Phone: +48 XXX YYY ZZZ</p>
+      <div class="footer-newsletter">
+        <h3>Stay Updated</h3>
+        <p>Subscribe to our newsletter for the latest updates and exclusive offers.</p>
+        <form class="newsletter-form">
+          <div class="input-group">
+            <input type="email" placeholder="Enter your email" />
+            <button mat-raised-button color="primary" type="submit">
+              Subscribe
+              <mat-icon>send</mat-icon>
+            </button>
+          </div>
+        </form>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>&copy; {{ currentYear }} ShopVerse. All Rights Reserved.</p>
+      <div class="footer-bottom-content">
+        <p>&copy; {{ currentYear }} ShopVerse. All Rights Reserved.</p>
+        <div class="footer-bottom-links">
+          <a routerLink="/privacy">Privacy Policy</a>
+          <a routerLink="/terms">Terms of Service</a>
+          <a routerLink="/cookies">Cookie Policy</a>
+        </div>
+      </div>
     </div>
   </div>
 </footer>
