@@ -1,47 +1,75 @@
-<div class="products-container">
-  <h1 class="page-title">
-    {{ selectedCategory ? selectedCategory.name : "All Products" }}
-  </h1>
-
-  <div class="categories-filter">
-    <button
-      mat-button
-      [class.active]="!selectedCategoryId"
-      (click)="loadAllProducts()"
-    >
-      All Products
-    </button>
-    <button
-      mat-button
-      *ngFor="let category of categories"
-      [class.active]="selectedCategoryId === category.id"
-      (click)="onCategorySelected(category.id!)"
-    >
-      {{ category.name }}
-    </button>
+<div class="products-page">
+  <div class="hero-section">
+    <div class="hero-content">
+      <h1 class="hero-title">{{ selectedCategory ? selectedCategory.name : "All Products" }}</h1>
+      <p class="hero-subtitle">Discover our curated collection of amazing products</p>
+    </div>
+    <div class="hero-decoration">
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+      <div class="floating-element"></div>
+    </div>
   </div>
 
-  <div *ngIf="loading">
-    <app-loading-spinner message="Loading products..."></app-loading-spinner>
-  </div>
+  <div class="products-container">
+    <div class="categories-filter">
+      <div class="filter-header">
+        <mat-icon>category</mat-icon>
+        <h2>Categories</h2>
+      </div>
+      <div class="filter-buttons">
+        <button
+          mat-button
+          [class.active]="!selectedCategoryId"
+          (click)="loadAllProducts()"
+        >
+          <mat-icon>grid_view</mat-icon>
+          All Products
+        </button>
+        <button
+          mat-button
+          *ngFor="let category of categories"
+          [class.active]="selectedCategoryId === category.id"
+          (click)="onCategorySelected(category.id!)"
+        >
+          {{ category.name }}
+        </button>
+      </div>
+    </div>
 
-  <div *ngIf="errorMessage" class="error-message">
-    {{ errorMessage }}
-  </div>
+    <div class="products-content">
+      <div *ngIf="loading" class="loading-state">
+        <app-loading-spinner message="Loading products..."></app-loading-spinner>
+      </div>
 
-  <div
-    *ngIf="!loading && !errorMessage && products.length === 0"
-    class="empty-state"
-  >
-    <mat-icon>inventory_2</mat-icon>
-    <p>No products found for this category.</p>
-  </div>
+      <div *ngIf="errorMessage" class="error-state">
+        <mat-icon>error_outline</mat-icon>
+        <h3>Oops! Something went wrong</h3>
+        <p>{{ errorMessage }}</p>
+        <button mat-raised-button color="primary" (click)="loadAllProducts()">
+          Try Again
+        </button>
+      </div>
 
-  <div
-    *ngIf="!loading && !errorMessage && products.length > 0"
-    class="products-grid"
-  >
-    <app-product-card *ngFor="let product of products" [product]="product">
-    </app-product-card>
+      <div
+        *ngIf="!loading && !errorMessage && products.length === 0"
+        class="empty-state"
+      >
+        <mat-icon>inventory_2</mat-icon>
+        <h3>No Products Found</h3>
+        <p>We couldn't find any products in this category.</p>
+        <button mat-raised-button color="primary" (click)="loadAllProducts()">
+          View All Products
+        </button>
+      </div>
+
+      <div
+        *ngIf="!loading && !errorMessage && products.length > 0"
+        class="products-grid"
+      >
+        <app-product-card *ngFor="let product of products" [product]="product">
+        </app-product-card>
+      </div>
+    </div>
   </div>
 </div>

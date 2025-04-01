@@ -1,10 +1,12 @@
 <mat-card class="product-card">
-  <img
-    mat-card-image
-    [src]="product.imageUrl"
-    alt="{{ product.name }}"
-    class="product-image"
-  />
+  <div class="product-image-container">
+    <img
+      mat-card-image
+      [src]="product.imageUrl"
+      alt="{{ product.name }}"
+      class="product-image"
+    />
+  </div>
   <mat-card-content>
     <h2 class="product-name">{{ product.name }}</h2>
     <p class="product-description">{{ product.description }}</p>
@@ -15,7 +17,8 @@
       View Details
     </button>
     <button mat-raised-button color="accent" (click)="addToCart()">
-      <mat-icon>add_shopping_cart</mat-icon> Add to Cart
+      <mat-icon>add_shopping_cart</mat-icon>
+      Add
     </button>
   </mat-card-actions>
 </mat-card>
