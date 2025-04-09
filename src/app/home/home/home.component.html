@@ -2,13 +2,24 @@
   <section class="hero-section">
     <div class="hero-content">
       <div class="hero-text" data-aos="fade-right">
-        <h1 class="hero-title">Discover <span class="highlight">Quality</span> Products</h1>
-        <p class="hero-subtitle">Elevate your shopping experience with curated collections</p>
+        <h1 class="hero-title">
+          Welcome to <span class="highlight">ShopVerse</span>
+        </h1>
+        <p class="hero-subtitle">Discover amazing products at great prices</p>
         <div class="hero-buttons">
-          <button mat-raised-button color="primary" class="primary-btn" routerLink="/products">
+          <button
+            mat-raised-button
+            color="primary"
+            class="primary-btn"
+            routerLink="/products"
+          >
             Shop Now
           </button>
-          <button mat-stroked-button class="secondary-btn" routerLink="/categories">
+          <button
+            mat-stroked-button
+            class="secondary-btn"
+            routerLink="/categories"
+          >
             Explore Categories
           </button>
         </div>
@@ -25,15 +36,17 @@
     <div class="section-container">
       <div class="section-header" data-aos="fade-up">
         <h2 class="section-title">Shop by Category</h2>
-        <p class="section-subtitle">Explore our wide range of carefully curated collections</p>
+        <p class="section-subtitle">
+          Explore our wide range of carefully curated collections
+        </p>
       </div>
       <div class="categories-grid" data-aos="fade-up" data-aos-delay="100">
-        <div 
-          *ngFor="let category of categories; let i = index" 
+        <div
+          *ngFor="let category of categories; let i = index"
           class="category-card"
           [routerLink]="['/products/category', category.id]"
           data-aos="fade-up"
-          [attr.data-aos-delay]="100 + (i * 50)"
+          [attr.data-aos-delay]="100 + i * 50"
         >
           <div class="category-content">
             <h3>{{ category.name }}</h3>
@@ -52,18 +65,26 @@
       </div>
 
       <div *ngIf="loading" class="loading-container">
-        <app-loading-spinner message="Loading featured products..."></app-loading-spinner>
+        <app-loading-spinner
+          message="Loading featured products..."
+        ></app-loading-spinner>
       </div>
 
       <div *ngIf="errorMessage" class="error-message">
         {{ errorMessage }}
       </div>
 
-      <div *ngIf="!loading && !errorMessage" class="products-grid" data-aos="fade-up">
-        <div *ngFor="let product of featuredProducts; let i = index" 
-          data-aos="fade-up" 
+      <div
+        *ngIf="!loading && !errorMessage"
+        class="products-grid"
+        data-aos="fade-up"
+      >
+        <div
+          *ngFor="let product of featuredProducts; let i = index"
+          data-aos="fade-up"
           [attr.data-aos-delay]="i * 100"
-          class="product-card-wrapper">
+          class="product-card-wrapper"
+        >
           <app-product-card [product]="product"></app-product-card>
         </div>
       </div>
@@ -97,7 +118,12 @@
             <span class="countdown-label">Minutes</span>
           </div>
         </div>
-        <button mat-raised-button color="accent" routerLink="/products" class="shop-now-btn">
+        <button
+          mat-raised-button
+          color="accent"
+          routerLink="/products"
+          class="shop-now-btn"
+        >
           Shop Now
           <mat-icon>arrow_forward</mat-icon>
         </button>
@@ -110,7 +136,9 @@
     <div class="section-container">
       <div class="section-header" data-aos="fade-up">
         <h2 class="section-title">Why Shop With Us</h2>
-        <p class="section-subtitle">We're committed to providing the best shopping experience</p>
+        <p class="section-subtitle">
+          We're committed to providing the best shopping experience
+        </p>
       </div>
       <div class="features-grid">
         <div class="feature-card" data-aos="fade-up" data-aos-delay="100">
