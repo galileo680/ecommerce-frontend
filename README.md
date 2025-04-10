@@ -50,15 +50,10 @@ Visually browse different product categories.
 Showcase of highlighted products.
 ![Featured Products](./src/assets/screenshots/home3.jpg)
 
-### Special Offers
-
-Promotional section for discounted items.
-![Special Offers](./src/assets/screenshots/home4.jpg)
-
-### Why Choose Us Section
+### Why Shop With Us Section
 
 Highlighting the main benefits of shopping with ShopVerse.
-![Why Choose Us](./src/assets/screenshots/home5.jpg)
+![Why Choose Us](./src/assets/screenshots/home4.jpg)
 
 ### Login Page
 
